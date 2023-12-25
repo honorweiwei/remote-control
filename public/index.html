@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <style>
+        #main{
+            margin: 0 auto;
+            width: 80%;
+            height:40px;
+            padding: 0;
+            /* background: pink; */
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        li{
+            list-style: none;
+            width: 60px;
+            border-radius: 4px;
+            border: 1px solid orchid;
+            text-align: center;
+
+        }
+
+        .active{
+            background-color: cadetblue;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul id="main">
+
+        </ul>
+    </div>
+
+    <script>
+        // 当前选中的月份
+        let this_index = 0
+        // 填充li
+        let main = document.getElementById('main')
+        let monthArr = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+        let listStr = ''
+        monthArr.map((item,index)=>{
+            listStr += `<li index=${index} class=${index===this_index?'active':''}>${item}</li>`
+        })
+        main.innerHTML = listStr
+
+
+
+        var observedElements = document.querySelectorAll('li');
+        // 月份点击事件
+        main.addEventListener('click',(event)=>{
+            this_index = Number(event.target.getAttribute('index'))
+            observeLiClass(observedElements)
+        })
+
+
+        // 点击事件回调
+        function observeLiClass(observedElements){
+            observedElements&&observedElements.forEach((item,index)=>{
+                if(index===this_index){
+                    item.classList.add('active')
+                }else{
+                    item.classList.remove('active')
+                }
+            })
+        }
+
+
+
+        
+
+
+    </script>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./chat.js"></script>
+
+
+
+    <script>
+        // 在收到消息的的反应
+        
+    </script>
+</body>
+</html>
