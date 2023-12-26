@@ -13,3 +13,6 @@
 ## 手机端打开 
 http://xxx.xxx.xxx.xxx:3000/mobile.html 页面
 在手机端操作可以改变pc页面的显示
+
+
+#### 打不开可能是findIP.js方法在获取ip时候有问题可以将findIP.js内容注释掉，只导出module.exports.ip = '你的ip'
