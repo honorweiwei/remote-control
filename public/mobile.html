@@ -4,12 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>遥控器</title>
+    <style>
+        .circle{
+            width: 200px;
+            height: 200px;
+            border: 1px solid gray;
+            border-radius: 100px;
+            overflow: hidden;
+            margin: 50px auto;
+            
+        }
+
+        .top{
+            display: flex;
+        }
+        .bottom{
+            display: flex;
+        }
+
+        .slice{
+            flex: 1;
+            width: 100px;
+            height: 100px;
+            background-color: antiquewhite;
+            text-align: center;
+            line-height: 100px;
+        }
+    
+    </style>
+
 </head>
 <body>
-    遥控器
+
+    <div class="circle">
+        <div class="top">
+            <div class="slice" index="0">春</div>
+            <div class="slice" index="1">夏</div>
+        </div>
+        <div class="bottom">
+            <div class="slice" index="3">冬</div>
+            <div class="slice" index="2">秋</div>
+           
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+
 
     <script>
+        const socket = io();
+        socket.on('connect', () => {
+            socket.emit('online', 'mobile');
+        });
+
+
+        let circle = document.querySelector('.circle')
+        
+
+        circle.addEventListener('click', (event)=>{
+            socket.emit('send_mobile', Number(event.target.getAttribute('index')));
+
+        })
+        
+    </script>
+
+    <script>
+        
 
     </script>
+
 </body>
 </html>

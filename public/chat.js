@@ -1,11 +1,10 @@
-const socket = io();
-socket.on('connect', () => {
-  // 赵敏
-  socket.emit('online', 'user-one');
-});
-socket.on('reply_private_chat', replyPrivateMessage);
+
+// socket.on('send_screen', replyPrivateMessage);
+// socket.on('send_mobile', replyPrivateMessage);
+// socket.emit('send_screen', replyPrivateMessage);
+// socket.emit('send_mobile', replyPrivateMessage);
 
 
-function replyPrivateMessage(call) {
-  call()
-}
+// function replyPrivateMessage(call) {
+//   call()
+// }

@@ -14,40 +14,29 @@ module.exports = server => {
             socket.username = username;
             users[username] = {
                 socketId: socket.id,
-                status: USER_STATUS[0]
+                status: USER_STATUS[0],
+                socket:socket
             };
+
+            if (socket.username){
+                console.log(socket.username+' is online')
+            }
+
+
         })
 
 
-        socket.on('private_chat', (params, fn) => {
-            // params---> { sender: '赵敏', receiver: '聂小倩', text: '111' }
-            // const receiver = users[params.receiver];
-            // params.createTime = moment().format('YYYY-MM-DD HH:mm:ss');
-            // const senderData = _.findWhere(userData, { username: params.sender });
-            // // senderData --->{ username: '赵敏', photo: './img/zhaomin.jpeg' }
-            // params.senderPhoto = (senderData || {}).photo;
+        socket.on('send_mobile', data => {
+            // 只给制定页面发送消息
+            const targetSocket = users.index && users.index.socket
+            if (targetSocket) {
+                targetSocket.emit('send_index', data)
+            }
 
-
-            // if (!params.senderPhoto) {
-            //     const senderLen = params.sender.length;
-            //     params.senderPhotoNickname = params.sender.substr(senderLen - 2)
-            // }
-
-            // fn(params);
-
-            // if (receiver && receiver.status === USER_STATUS[0]) {
-            //     socket.to(users[params.receiver].socketId).emit('reply_private_chat', params);
-            // } else {
-            //     console.log(`${params.receiver} 不在线`);
-            // }
         });
 
         socket.on('disconnect', reason => {
-            console.log('disconnect: ', reason);
-
-            // if (users[socket.username]) {
-            //     users[socket.username].status = USER_STATUS[1];
-            // }
+            console.log('disconnect: ', socket.username);
         });
     });
 }

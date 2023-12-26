@@ -8,7 +8,7 @@
     <style>
         #main{
             margin: 0 auto;
-            width: 80%;
+            width: 40%;
             height:40px;
             padding: 0;
             /* background: pink; */
@@ -46,7 +46,8 @@
         let this_index = 0
         // 填充li
         let main = document.getElementById('main')
-        let monthArr = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+        // let monthArr = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+        let monthArr = ['春','夏','秋','冬']
         let listStr = ''
         monthArr.map((item,index)=>{
             listStr += `<li index=${index} class=${index===this_index?'active':''}>${item}</li>`
@@ -83,12 +84,19 @@
 
 
     <script src="/socket.io/socket.io.js"></script>
-    <script src="./chat.js"></script>
 
 
+    <script defer>
+        const socket = io();
+        socket.on('connect', () => {
+            socket.emit('online', 'index');
+        });
 
-    <script>
-        // 在收到消息的的反应
+
+        socket.on('send_index', (data)=>{
+            this_index = data
+            observeLiClass(observedElements)
+        })
         
     </script>
 </body>
