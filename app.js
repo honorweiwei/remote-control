@@ -19,5 +19,5 @@ server.listen(port, ip, () => {
     console.log(`Server is running at http://${ip}:${port}`);
     // 打开浏览器
     // open('http://localhost:3000/index.html');
-    open(`http://10.6.226.138:${port}/index.html`);
+    open(`http://${ip}:${port}/index.html`);
 });
