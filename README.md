@@ -10,6 +10,6 @@
 
 如果不想自动启动，可以在 app.js中注释掉--》open(`http://${ip}:${port}/index.html`);
 
-## 手机端打开 http://xxx.xxx.xxx.xxx:3000/mobile.html 页面
-
+## 手机端打开 
+http://xxx.xxx.xxx.xxx:3000/mobile.html 页面
 在手机端操作可以改变pc页面的显示
